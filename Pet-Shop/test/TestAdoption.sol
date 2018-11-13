@@ -33,4 +33,15 @@ contract TestAdoption
         //Check if returned adopter and expected adopter is equal.
         Assert.equal(adopter, expectedAdopter, "Owner of the expected pet should be this contract");
     }
+
+    // Testing retrieval of all pet owners
+    function testGetAdopterAddressByPetIdInArray() public 
+    {
+        // Store adopters in memory rather than contract's storage
+        // The memory attribute tells Solidity to temporarily store the value in memory, rather than saving it to the contract's storage.
+        address[16] memory adopters = adoption.getAdopters();
+
+        // Check if owner of given pet id and expected adopter is equal.
+        Assert.equal(adopters[expectedPetId], expectedAdopter, "Owner of the expected pet should be this contract");
+    }
 }
